@@ -45,23 +45,6 @@ app.get("/todo/:id", (req, res) => {
 }
 });
 
-// app.post("/todo",(req,res) => {
-//   let todo = req.body.todo;
-//   let done = JSON.parse(req.body.done);
-//   //console.log(typeof done);
-//
-//   if (todo === "") {
-//     res.send("todo not empty");
-//   }else{
-//     let newTodo = {
-//       todo = todo,
-//       done = done
-//     };
-//     todoList.push(newTodo);
-//     res.send({success: true , data: newTodo});
-//   }
-// });
-
 app.post("/todo", (req, res) => {
   let todo = req.body.todo;
   let done = JSON.parse(req.body.done);
@@ -78,7 +61,16 @@ app.post("/todo", (req, res) => {
   }
 });
 
+app.delete("/todo/:id", (req, res) => {
+  let length = todoList.length;
+  let index = req.params.id;
 
-
+  if (index > length - 1) {
+    res.send({ sucess: false, message: "data not found" });
+  } else {
+    todoList.splice(index, 1);
+    res.send({ success: true, data: todoList });
+  }
+});
 
 app.listen(PORT, () => console.log(`example app running on port ${PORT}`));
