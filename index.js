@@ -1,6 +1,9 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
+const cors = require("cors");
+
+const PORT = process.env.PORT || 3001;
 
 let todoList = [
   {todo : "learn express", done: true},
@@ -19,6 +22,8 @@ app.use(bodyParser.json());
 app.get("/todo", (req, res) => {
   res.send({ data: todoList });
 });
+
+app.use(cors())
 
 app.get("/", (req, res) => {
   res.send("hello world");
@@ -74,4 +79,6 @@ app.post("/todo", (req, res) => {
 });
 
 
-app.listen(3001, () => console.log("example app running on port 3001"));
+
+
+app.listen(PORT, () => console.log(`example app running on port ${PORT}`));

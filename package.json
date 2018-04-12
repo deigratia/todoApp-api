@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index"
   },
   "keywords": [],
-  "author": "",
+  "author": "Dei Gratia",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",

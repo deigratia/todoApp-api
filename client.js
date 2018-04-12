@@ -1,8 +1,9 @@
 const axios = require("axios");
+const URL ="http://localhost:3001/todo";
 
 const getAll = () => {
   return axios
-  fetch("http://localhost:3001/todo")
+  fetch(`${URL}/todo`)
   .then(rawResponse => {
     console.log(rawResponse.data);
   })
