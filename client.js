@@ -3,18 +3,41 @@ const URL ="http://localhost:3001/todo";
 
 const getAll = () => {
   return axios
-  fetch(`${URL}/todo`)
+  .get(`${URL}/`)
   .then(rawResponse => {
     console.log(rawResponse.data);
   })
-  .catch(err => {
-    console.log(err);
+  .catch(function(error) {
+    console.log(error);
   });
 };
 
-axios.post("http://localhost:3001/todo",{todo: "learn react native", done:false})
-.then(rawResponse => {
-  console.log(rawResponse.data);
-});
+const getOne = () => {
+  return axios
+  .get(`${URL}/0`)
+  .then(rawResponse => {
+    console.log(rawResponse.data);
+  })
+  .catch(function(error) {
+    console.log(error);
+  });
+};
 
+const createNew = () => {
+  return axios
+    .post(`${URL}/`, {
+      todo: "New Todo",
+      done: false
+    })
+    .then(function(rawResponse) {
+      console.log(rawResponse.data);
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+};
+
+getAll();
+getOne();
+createNew();
 getAll();

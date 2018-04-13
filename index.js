@@ -19,15 +19,38 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // parse application/json
 app.use(bodyParser.json());
-app.get("/todo", (req, res) => {
-  res.send({ data: todoList });
-});
+
 
 app.use(cors())
+
+
 
 app.get("/", (req, res) => {
   res.send("hello world");
 });
+
+// app.get('/todo/search', (req, res) => {
+//   let searchKey = req.query.todo;
+//   let result = todoList.filter(todo =>
+//     todo.todo.toLowerCase().includes(searchKey.toLowerCase())
+//   );
+//   res.send(result);
+// });
+
+app.get("/todo/search", (req, res) => {
+  let searchtext = req.query.todo
+  let find = todoList.filter(todo => {
+    return todo.todo.toLowerCase().includes(searchtext.toLowerCase())
+  });
+  res.send({sucess: true, result: find})
+
+})
+
+app.get("/todo", (req, res) => {
+  res.send({ data: todoList });
+});
+
+
 
 // app.get("/todo", (req, res) => {
 //   res.send(todoList);
@@ -44,6 +67,8 @@ app.get("/todo/:id", (req, res) => {
   console.log(index, length);
 }
 });
+
+
 
 app.post("/todo", (req, res) => {
   let todo = req.body.todo;
@@ -73,4 +98,14 @@ app.delete("/todo/:id", (req, res) => {
   }
 });
 
-app.listen(PORT, () => console.log(`example app running on port ${PORT}`));
+
+
+// app.get('/todo/search', (req, res) => {
+//   let keyword = req.query.todo
+//   let result = todoList.filter(todo => {
+//     return todo.todo.toLowerCase().includes(keyword.toLowerCase())
+//   })
+//   res.send(result)
+// })
+
+app.listen(PORT, () => console.log(`localhost:${PORT}`));
